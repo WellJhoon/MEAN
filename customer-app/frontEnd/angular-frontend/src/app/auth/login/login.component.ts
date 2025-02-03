@@ -1,13 +1,14 @@
+// src/app/auth/login/login.component.ts
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { TokenService } from '../../services/token.service';
-import { HttpClient, HttpClientModule } from '@angular/common/http'; // Importa el módulo HttpClientModule
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [HttpClientModule], // Aquí importas HttpClientModule
+  imports: [FormsModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -17,8 +18,7 @@ export class LoginComponent {
   constructor(
     private authService: AuthService,
     private tokenService: TokenService,
-    private router: Router,
-    private http: HttpClient
+    private router: Router
   ) {}
 
   onSubmit(): void {

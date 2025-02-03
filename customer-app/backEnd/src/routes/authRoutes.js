@@ -1,18 +1,16 @@
-import express from "express";
-import { register, login } from "../controllers/authController.js";
-import authMiddleware from "../Middleware/authMiddleware.js";
-
+import express from 'express';
+import { register, login, getProfile } from '../controllers/authController.js'; // Importa getProfile
+import authMiddleware from '../Middleware/authMiddleware.js';
 
 const router = express.Router();
 
+// Ruta para registrar un nuevo usuario
+router.post('/register', register);
 
-router.post("/register", register);
+// Ruta para iniciar sesión
+router.post('/login', login);
 
-
-router.post("/login", login);
-
-router.get("/profile", authMiddleware, (req, res) => {
-  res.json({ message: "This is a protected route", userId: req.userId });
-});
+// Ruta para obtener el perfil del usuario (protegida)
+router.get('/profile', authMiddleware, getProfile);
 
 export default router;

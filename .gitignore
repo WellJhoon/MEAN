@@ -1,0 +1,16 @@
+# compiled output
+/dist
+
+
+# dependencies
+/node_modules
+/bower_components
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+
+# dotenv environment variables file
+.env
+

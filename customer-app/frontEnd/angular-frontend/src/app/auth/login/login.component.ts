@@ -18,7 +18,7 @@ export class LoginComponent {
     private authService: AuthService,
     private tokenService: TokenService,
     private router: Router,
-    private http: HttpClient // Aquí puedes usar HttpClient directamente
+    private http: HttpClient
   ) {}
 
   onSubmit(): void {

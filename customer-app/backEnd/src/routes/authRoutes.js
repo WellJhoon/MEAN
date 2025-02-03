@@ -1,12 +1,18 @@
 import express from "express";
 import { register, login } from "../controllers/authController.js";
+import authMiddleware from "../Middleware/authMiddleware.js";
+
 
 const router = express.Router();
 
-// Ruta para registrar un nuevo usuario
+
 router.post("/register", register);
 
-// Ruta para iniciar sesión
+
 router.post("/login", login);
+
+router.get("/profile", authMiddleware, (req, res) => {
+  res.json({ message: "This is a protected route", userId: req.userId });
+});
 
 export default router;

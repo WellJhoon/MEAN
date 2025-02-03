@@ -11,6 +11,30 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  nombre: {
+    type: String,
+    required: true,
+  },
+  apellido: {
+    type: String,
+    required: true,
+  },
+  foto: {
+    type: String,
+    default: "", // Opcional
+  },
+  numero: {
+    type: String,
+    required: true,
+  },
+  direccion: {
+    type: String,
+    default: "", // Opcional
+  },
+  fechaNacimiento: {
+    type: Date,
+    default: null, // Opcional
+  },
 });
 
 // Hash de la contraseña antes de guardar

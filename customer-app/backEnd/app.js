@@ -2,7 +2,9 @@ import express from 'express';
 import cors from 'cors';
 import connectDB from './db.js';
 import authRoutes from './src/routes/authRoutes.js';
-import noteRoutes from './src/routes/noteRoutes.js';
+import productRoutes from './src/routes/productRoutes.js'
+import cartRoutes from './src/routes/cartRoutes.js'
+import orderRoutes from './src/routes/orderRoutes.js'
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -18,8 +20,9 @@ connectDB();
 
 // Rutas
 app.use('/api/auth', authRoutes,);
-app.use('/api', noteRoutes);
-
+app.use('/api/products', productRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/orders', orderRoutes);
 // Iniciar servidor
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

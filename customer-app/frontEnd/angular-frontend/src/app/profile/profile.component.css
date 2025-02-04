@@ -1,0 +1,10 @@
+.profile-container {
+    text-align: center;
+  }
+  
+  .error-alert {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+  }
+  

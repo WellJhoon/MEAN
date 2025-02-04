@@ -10,7 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  user: any = {}; // Inicializamos el objeto user vacío
+  user: any = null; // Inicializamos como null para evitar problemas de acceso a propiedades antes de la carga
+  isLoading: boolean = true;
+  errorMessage: string | null = null;
 
   constructor(private authService: AuthService) {}
 
@@ -18,9 +20,11 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile().subscribe({
       next: (response) => {
         this.user = response;
-        console.log(this.user);
+        this.isLoading = false;
       },
       error: (error) => {
+        this.errorMessage = 'Error al cargar el perfil';
+        this.isLoading = false;
         console.error('Error fetching user profile', error);
       },
     });

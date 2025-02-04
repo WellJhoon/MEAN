@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
+import { AuthService } from '../../services/auth.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
 })
@@ -20,16 +21,30 @@ export class RegisterComponent {
     numero: '',
   };
 
+  errorMessage: string | null = null;
+  successMessage: string | null = null;
+
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
     this.authService.register(this.userData).subscribe({
-      next: (response) => {
-        this.router.navigate(['/login']);
+      next: () => {
+        this.successMessage = 'Registro exitoso. Redirigiendo al login...';
+        this.errorMessage = null;
+        setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (error) => {
-        console.error('Error during registration', error);
+        if (error.status === 409) {
+          this.errorMessage = 'El usuario ya está registrado.';
+        } else {
+          this.errorMessage = 'Error al registrar. Inténtalo de nuevo.';
+        }
+        this.successMessage = null;
       },
     });
+  }
+
+  goToLogin(): void {
+    this.router.navigate(['/login']);
   }
 }

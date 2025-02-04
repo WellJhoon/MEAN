@@ -1,24 +1,32 @@
-<!-- src/app/profile/profile.component.html -->
-<h2>Profile</h2>
-<table *ngIf="user">
-  <tr>
-    <th>Username</th>
-    <td>{{ user.username }}</td>
-  </tr>
-  <tr>
-    <th>Nombre</th>
-    <td>{{ user.nombre }}</td>
-  </tr>
-  <tr>
-    <th>Apellido</th>
-    <td>{{ user.apellido }}</td>
-  </tr>
-  <tr>
-    <th>Email</th>
-    <td>{{ user.email }}</td>
-  </tr>
-  <tr>
-    <th>Teléfono</th>
-    <td>{{ user.numero }}</td>
-  </tr>
-</table>
+<div class="profile-container">
+  <h2>Perfil</h2>
+
+  <p *ngIf="isLoading">Cargando perfil...</p>
+
+  <div *ngIf="errorMessage" class="error-alert">
+    {{ errorMessage }}
+  </div>
+
+  <table *ngIf="user && !isLoading">
+    <tr>
+      <th>Usuario</th>
+      <td>{{ user.username }}</td>
+    </tr>
+    <tr>
+      <th>Nombre</th>
+      <td>{{ user.nombre }}</td>
+    </tr>
+    <tr>
+      <th>Apellido</th>
+      <td>{{ user.apellido }}</td>
+    </tr>
+    <tr>
+      <th>Email</th>
+      <td>{{ user.email }}</td>
+    </tr>
+    <tr>
+      <th>Teléfono</th>
+      <td>{{ user.numero }}</td>
+    </tr>
+  </table>
+</div>
